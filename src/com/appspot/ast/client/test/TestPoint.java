@@ -11,8 +11,8 @@ import com.google.gwt.user.client.ui.RootPanel;
  * Date: 14.07.11
  * Time: 12:49
  */
-public class TestEntryPoint implements EntryPoint {
+public class TestPoint implements EntryPoint {
   public void onModuleLoad() {
-    RootPanel.get().add(new HTML("Wave Editor"));
+    RootPanel.get().add(new WaveEditorLayout());
   }
 }

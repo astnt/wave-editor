@@ -1,0 +1,59 @@
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:ww='urn:import:com.appspot.ast.client.editor'
+    >
+  <ui:style field="style" type="com.appspot.ast.client.test.WaveEditorLayout.MyStyle">
+    .item {
+
+    }
+
+    .source {
+      width: 100%;
+      height: 20em;
+    }
+
+    .original {
+      height: 5em;
+    }
+
+    .log {
+      background: #f0f0f0;
+    }
+
+    .sourceContainer {
+      background-color: #f0f0f0;
+      padding:2px;
+    }
+
+    .imageContainer img {
+      height:70px;
+    }
+  </ui:style>
+  <g:HTMLPanel styleName="{style.item}">
+    <h4>Wave Editor</h4>
+    <!--<ww:Toolbar ui:field="toolbar"/>-->
+    <!--<g:Widget ui:field="richEditorLayout"/>-->
+    <!--<g:Widget ui:field="sourceEditorLayout"/>-->
+    <!--<p class="{style.imageContainer}">-->
+      <!--<img ui:field="img1" src="/pics/Snow.jpg" alt=""/>-->
+      <!--<img ui:field="img2" src="/pics/Beautiful+View.jpg" alt=""/>-->
+      <!--<img ui:field="img3" src="/pics/yosemite.jpg" alt=""/>-->
+      <!--<img ui:field="img4" src="/pics/hills.jpg" alt=""/>-->
+    <!--</p>-->
+    <!--<p class="{style.sourceContainer}">-->
+      <!--<g:Button ui:field="fromSource" text="Insert"/> from xml:-->
+      <!--<g:TextArea ui:field="sourceAdopted" styleName="{style.source}"/>-->
+    <!--</p>-->
+    <!--<p>-->
+      <!--<g:Button ui:field="italic" text="Italic"/>-->
+      <!--<g:Button ui:field="custom" text="Phone"/>-->
+      <!--<g:Button ui:field="insertDoodad" text="MyDoodad"/>-->
+    <!--</p>-->
+    <!--<p class="{style.sourceContainer}">-->
+      <!--<g:Button ui:field="fromSourceOriginal" text="Insert"/> from original:-->
+      <!--<g:TextArea ui:field="source" styleName="{style.source} {style.original}"/>-->
+    <!--</p>-->
+    <!--<g:HTML ui:field="log" styleName="{style.log}" />-->
+  </g:HTMLPanel>
+</ui:UiBinder>

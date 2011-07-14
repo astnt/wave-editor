@@ -33,19 +33,6 @@
     <mkdir dir="${classes.dir}"/>
   </target>
 
-  <target name="compile" depends="clean,prepare">
-    <echo message="==================================================================="/>
-    <echo message="Compile configuration:"/>
-    <echo message="java.dir       = ${java.dir}"/>
-    <echo message="classes.dir    = ${classes.dir}"/>
-    <echo message="==================================================================="/>
-    <javac srcdir="${java.dir}" destdir="${classes.dir}" debug="${project.build.debug}"
-           classpathref="compile.classpath">
-      <include name="**/*.java"/>
-      <compilerarg value="-proc:none"/>
-    </javac>
-  </target>
-
   <path id="frontend.classpath">
     <pathelement path="src" />
     <fileset file="${gwt.home}/gwt-user.jar" />

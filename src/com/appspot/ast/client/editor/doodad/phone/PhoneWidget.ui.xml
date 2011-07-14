@@ -1,0 +1,56 @@
+<!--
+Bare bones captioned image template. Doesn't look as pretty
+as the full-blown ImageThumbnailWidget.
+
+Author: danilatos@google.com
+-->
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
+    >
+  <ui:image field="phone" src="phone.png"/>
+  <ui:style>
+    .item {
+      display:inline-block;
+      position: relative;
+    }
+
+    .container span {
+      background-color: #f0e68c;
+    }
+    @sprite .container span:last-child {
+      gwt-image: "phone";
+      background-position:center right;
+      background-color: #f0e68c;
+      /*padding-right: value('phone.getWidth', 'px');*/
+      padding-right: 16px;
+    }
+
+    .container span:first-child {
+      background-color:#fff8dc;
+      margin-right:.5em;
+    }
+
+    /*
+     * For some reason, the programmatic fixing of whitespace doesn't work for
+     * FF, need to figure out why...
+     */
+    @if user.agent gecko1_8 {
+
+    }
+
+    /* Apply the style to immediate children, i.e. the caption, not to the container itself.
+     * This way we don't get ugly artifacts when there is no caption. */
+    .container > * {
+      border: 1px solid white;
+      background: white;
+    }
+
+    .container br {
+      display:none;
+    }
+  </ui:style>
+  <gwt:HTMLPanel styleName='{style.item}'>
+      <span ui:field='container' class='{style.container}'/>
+  </gwt:HTMLPanel>
+</ui:UiBinder>

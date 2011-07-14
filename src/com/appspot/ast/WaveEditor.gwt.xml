@@ -2,28 +2,28 @@
   <inherits name='com.google.gwt.user.User'/>
 
   <!-- Wave -->
-  <!--<inherits name="org.waveprotocol.wave.client.common.util.Util"/>-->
+  <inherits name="org.waveprotocol.wave.client.common.util.Util"/>
 
-  <!--<inherits name="org.waveprotocol.wave.model.Model"/>-->
-  <!--<inherits name="org.waveprotocol.wave.model.account.Account" />-->
-  <!--<inherits name="org.waveprotocol.wave.model.schema.conversation.Conversation" />-->
-  <!--<inherits name="org.waveprotocol.wave.model.schema.supplement.Supplement" />-->
-  <!--<inherits name="org.waveprotocol.wave.client.editor.Editor" />-->
-  <!--<inherits name="org.waveprotocol.wave.client.widget.toolbar.Toolbar" />-->
-  <!--<inherits name="org.waveprotocol.wave.client.editor.toolbar.Toolbar"/>-->
-  <!--<inherits name="org.waveprotocol.wave.common.logging.Logging"/>-->
-  <!--<inherits name="org.waveprotocol.wave.client.doodad.Doodad"/>-->
+  <inherits name="org.waveprotocol.wave.model.Model"/>
+  <inherits name="org.waveprotocol.wave.model.account.Account" />
+  <inherits name="org.waveprotocol.wave.model.schema.conversation.Conversation" />
+  <inherits name="org.waveprotocol.wave.model.schema.supplement.Supplement" />
+  <inherits name="org.waveprotocol.wave.client.editor.Editor" />
+  <inherits name="org.waveprotocol.wave.client.widget.toolbar.Toolbar" />
+  <inherits name="org.waveprotocol.wave.client.editor.toolbar.Toolbar"/>
+  <inherits name="org.waveprotocol.wave.common.logging.Logging"/>
+  <inherits name="org.waveprotocol.wave.client.doodad.Doodad"/>
 
   <!-- Specify the paths for translatable code -->
   <source path="client"/>
   <source path="shared"/>
   <source path="test"/>
 
-  <entry-point class="com.appspot.ast.client.test.TestEntryPoint"/>
+  <entry-point class="com.appspot.ast.client.test.TestPoint"/>
 
   <!-- Only build supported clients. -->
-  <!--<set-property name="user.agent" value="safari,gecko1_8,ie6,ie8"/>-->
-  <!--<set-property name="mobile.user.agent" value="not_mobile" />-->
+  <set-property name="user.agent" value="safari,gecko1_8,ie6,ie8"/>
+  <set-property name="mobile.user.agent" value="not_mobile" />
 
-  <!--<set-property name="loglevel" value="debug"/>-->
+  <set-property name="loglevel" value="debug"/>
 </module>
