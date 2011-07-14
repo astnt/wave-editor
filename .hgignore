@@ -1,0 +1,5 @@
+war/editor/gwt
+.idea
+\\*.iml$
+war/WEB-INF/classes
+
