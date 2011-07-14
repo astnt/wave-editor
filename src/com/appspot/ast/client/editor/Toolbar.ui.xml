@@ -3,7 +3,7 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
     xmlns:et="urn:import:org.waveprotocol.wave.client.widget.toolbar"
     >
-  <ui:with  field="res" type="ru.artlebedev.ast.client.view.widget.wave.Toolbar.MyResources"/>
+  <ui:with  field="res" type="com.appspot.ast.client.editor.Toolbar.MyResources"/>
   <ui:image field="bold" src="images/edit/bold.png"/>
   <ui:image field="italic" src="images/edit/italic.png"/>
   <ui:image field="underline" src="images/edit/underline.png"/>
@@ -27,7 +27,7 @@
   <ui:image field="insertLink" src="images/edit/createLink.png"/>
   <ui:image field="removeLink" src="images/edit/removeLink.png"/>
 
-  <ui:style field="css" type="ru.artlebedev.ast.client.view.widget.wave.Toolbar.MyStyle">
+  <ui:style field="css" type="com.appspot.ast.client.editor.Toolbar.MyStyle">
     .item {
       border-left:solid 1px silver;
       border-right:solid 1px silver;

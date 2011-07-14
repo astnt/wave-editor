@@ -1,4 +1,4 @@
-package ru.artlebedev.ast.client.view.widget.wave;
+package com.appspot.ast.client.editor;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;

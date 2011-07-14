@@ -32,8 +32,8 @@
   </ui:style>
   <g:HTMLPanel styleName="{style.item}">
     <h4>Wave Editor</h4>
-    <!--<ww:Toolbar ui:field="toolbar"/>-->
-    <!--<g:Widget ui:field="richEditorLayout"/>-->
+    <ww:Toolbar ui:field="toolbar"/>
+    <g:Widget ui:field="richEditorLayout"/>
     <!--<g:Widget ui:field="sourceEditorLayout"/>-->
     <!--<p class="{style.imageContainer}">-->
       <!--<img ui:field="img1" src="/pics/Snow.jpg" alt=""/>-->
@@ -54,6 +54,6 @@
       <!--<g:Button ui:field="fromSourceOriginal" text="Insert"/> from original:-->
       <!--<g:TextArea ui:field="source" styleName="{style.source} {style.original}"/>-->
     <!--</p>-->
-    <!--<g:HTML ui:field="log" styleName="{style.log}" />-->
+    <g:HTML ui:field="log" styleName="{style.log}" />
   </g:HTMLPanel>
 </ui:UiBinder>
