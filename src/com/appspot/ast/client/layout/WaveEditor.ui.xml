@@ -3,7 +3,7 @@
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
     xmlns:ww='urn:import:com.appspot.ast.client.editor'
     >
-  <ui:style field="style" type="com.appspot.ast.client.test.WaveEditorLayout.MyStyle">
+  <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
 
     }
@@ -19,21 +19,39 @@
 
     .log {
       background: #f0f0f0;
+      height: auto;
+      border-left:solid 1px silver;
+      border-top-width:0;
     }
 
     .sourceContainer {
-      background-color: #f0f0f0;
-      padding:2px;
+      background-color:#f0f0f0;
+      padding:.3em;
     }
 
     .imageContainer img {
-      height:70px;
+      height: 70px;
+    }
+
+    .tabs {
+      font-family:Arial;
+      font-size:80%;
+      padding:.2em;
+      border:solid 1px silver;
+      border-top-width:0;
+      background:#f0f0f0;
     }
   </ui:style>
   <g:HTMLPanel styleName="{style.item}">
     <h4>Wave Editor</h4>
     <ww:Toolbar ui:field="toolbar"/>
     <g:Widget ui:field="richEditorLayout"/>
+    <div>
+      <div class="{style.tabs}">
+        <g:CheckBox text="Исходник" ui:field="sourceTab" checked="true"/>
+        <g:CheckBox text="Лог" ui:field="logTab"/>
+      </div>
+    </div>
     <!--<g:Widget ui:field="sourceEditorLayout"/>-->
     <!--<p class="{style.imageContainer}">-->
       <!--<img ui:field="img1" src="/pics/Snow.jpg" alt=""/>-->
@@ -41,10 +59,10 @@
       <!--<img ui:field="img3" src="/pics/yosemite.jpg" alt=""/>-->
       <!--<img ui:field="img4" src="/pics/hills.jpg" alt=""/>-->
     <!--</p>-->
-    <!--<p class="{style.sourceContainer}">-->
-      <!--<g:Button ui:field="fromSource" text="Insert"/> from xml:-->
-      <!--<g:TextArea ui:field="sourceAdopted" styleName="{style.source}"/>-->
-    <!--</p>-->
+    <div class="{style.sourceContainer}" ui:field="sourceContainer">
+      <g:Button ui:field="fromSource" text="Insert"/>
+      <g:TextArea ui:field="sourceAdopted" styleName="{style.source}"/>
+    </div>
     <!--<p>-->
       <!--<g:Button ui:field="italic" text="Italic"/>-->
       <!--<g:Button ui:field="custom" text="Phone"/>-->
