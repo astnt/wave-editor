@@ -11,10 +11,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.RadioButton;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.Widget;
 
@@ -29,25 +29,28 @@ public class WaveEditor extends Composite {
 
   interface Binder extends UiBinder<Widget, WaveEditor> { Binder BINDER = GWT.create(Binder.class); }
   interface MyStyle extends CssResource {
-    String sourceContainer();
-    String source();
     String item();
     String original();
     String imageContainer();
     String log();
     String tabs();
+    String source();
+    String wysiwyg();
+    String sourceTab();
+    String wysiwygTab();
   }
 
   @UiField MyStyle style;
   @UiField Toolbar toolbar;
   @UiField(provided = true) Widget richEditorLayout;
-  @UiField CheckBox sourceTab;
-  @UiField CheckBox logTab;
   @UiField HTML log;
-  @UiField Button fromSource;
   @UiField TextArea sourceAdopted;
-  @UiField DivElement sourceContainer;
 
+  @UiField RadioButton wysiwygTab;
+  @UiField RadioButton sourceTab;
+  @UiField CheckBox logTab;
+  @UiField
+  DivElement richEditorContainer;
 
   public WaveEditor() {
     harness = new GenericHarness();
@@ -67,15 +70,35 @@ public class WaveEditor extends Composite {
 
   @UiHandler("sourceTab")
   void handleClickSourceTab(ClickEvent event) {
-    sourceContainer.getStyle().setDisplay(sourceTab.getValue() ? Style.Display.BLOCK : Style.Display.NONE);
+    removeStyleName(style.wysiwyg());
+    addStyleName(style.source());
+    updateView();
+  }
+
+  @UiHandler("wysiwygTab")
+  public void handleClickWysiwygTab(ClickEvent event) {
+    removeStyleName(style.source());
+    addStyleName(style.wysiwyg());
+    setText(sourceAdopted.getText());
+    updateView();
   }
 
   @UiHandler("logTab")
   void handleClickLogTab(ClickEvent event) {
-    log.getElement().getStyle().setDisplay(logTab.getValue() ? Style.Display.BLOCK : Style.Display.NONE);
+    updateView();
   }
 
-  @UiHandler("fromSource")
+  private void updateView() {
+    richEditorContainer.getStyle().setDisplay(isDisplay(wysiwygTab.getValue()));
+    sourceAdopted.getElement().getStyle().setDisplay(isDisplay(sourceTab.getValue()));
+    log.getElement().getStyle().setDisplay(isDisplay(logTab.getValue()));
+  }
+
+  private Style.Display isDisplay(boolean isDisplay) {
+    return isDisplay ? Style.Display.BLOCK : Style.Display.NONE;
+  }
+
+//  @UiHandler("fromSource")
   void handleClickFromSource(ClickEvent event) {
     setText(sourceAdopted.getText());
   }
