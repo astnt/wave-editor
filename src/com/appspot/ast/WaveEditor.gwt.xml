@@ -1,4 +1,4 @@
-<module rename-to="gwt">
+<module>
   <inherits name='com.google.gwt.user.User'/>
 
   <!-- Wave -->
@@ -14,6 +14,11 @@
   <inherits name="org.waveprotocol.wave.common.logging.Logging"/>
   <inherits name="org.waveprotocol.wave.client.doodad.Doodad"/>
 
+
+  <!-- Lib: -->
+  <!--<source path=""/>-->
+
+  <!-- Test: -->
   <!-- Specify the paths for translatable code -->
   <source path="client"/>
   <source path="shared"/>

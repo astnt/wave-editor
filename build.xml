@@ -122,4 +122,11 @@
     </java>
   </target>
 
+  <target name="dist" depends="prepare">
+    <jar destfile="${jar.dist}/wave-editor.jar" basedir="${classes.dir}">
+      <fileset dir="src" />
+    </jar>
+  </target>
+
+
 </project>
