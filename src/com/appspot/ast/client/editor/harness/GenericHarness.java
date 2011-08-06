@@ -3,6 +3,7 @@ package com.appspot.ast.client.editor.harness;
 import com.appspot.ast.client.editor.EditorDocOpUtil;
 import com.appspot.ast.client.editor.EditorStreamingXmlParser;
 import com.appspot.ast.client.editor.PrettyWithAttributes;
+import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteDoodad;
 import com.appspot.ast.client.editor.doodad.my.MyDoodad;
 import com.appspot.ast.client.editor.doodad.phone.PhoneDoodad;
 import com.google.gwt.core.client.GWT;
@@ -18,12 +19,7 @@ import org.waveprotocol.wave.client.doodad.attachment.render.ImageThumbnailWrapp
 import org.waveprotocol.wave.client.doodad.attachment.testing.FakeAttachmentsManager;
 import org.waveprotocol.wave.client.doodad.form.FormDoodads;
 import org.waveprotocol.wave.client.doodad.link.LinkAnnotationHandler;
-import org.waveprotocol.wave.client.editor.Editor;
-import org.waveprotocol.wave.client.editor.EditorContextAdapter;
-import org.waveprotocol.wave.client.editor.EditorSettings;
-import org.waveprotocol.wave.client.editor.EditorStaticDeps;
-import org.waveprotocol.wave.client.editor.EditorUpdateEvent;
-import org.waveprotocol.wave.client.editor.Editors;
+import org.waveprotocol.wave.client.editor.*;
 import org.waveprotocol.wave.client.editor.content.ContentDocument;
 import org.waveprotocol.wave.client.editor.content.ContentElement;
 import org.waveprotocol.wave.client.editor.content.ContentNode;
@@ -32,7 +28,6 @@ import org.waveprotocol.wave.client.editor.content.misc.StyleAnnotationHandler;
 import org.waveprotocol.wave.client.editor.content.paragraph.LineRendering;
 import org.waveprotocol.wave.client.editor.keys.KeyBindingRegistry;
 import org.waveprotocol.wave.client.editor.toolbar.ButtonUpdater;
-import org.waveprotocol.wave.client.editor.util.EditorDocFormatter;
 import org.waveprotocol.wave.client.widget.popup.simple.Popup;
 import org.waveprotocol.wave.common.logging.LoggerBundle;
 import org.waveprotocol.wave.model.document.operation.DocInitialization;
@@ -144,6 +139,8 @@ public class GenericHarness implements KeySignalListener {
         // Permit our doodad to appear inside a <body> element
         addChildren("body", MyDoodad.TAGNAME);
         addChildren("body", PhoneDoodad.TAGNAME);
+        addChildren("body", BlockQuoteDoodad.TAGNAME);
+        containsBlipText(BlockQuoteDoodad.TAGNAME);
 
         // Permit a 'ref' attribute on the <mydoodad> element.
         // e.g. permit content like <mydoodad ref='pics/wave.gif'/>
@@ -207,6 +204,7 @@ public class GenericHarness implements KeySignalListener {
 
     MyDoodad.register(registries.getElementHandlerRegistry());
     PhoneDoodad.register(registries.getElementHandlerRegistry());
+    BlockQuoteDoodad.register(registries.getElementHandlerRegistry());
 
     LinkAnnotationHandler.register(registries, new LinkAnnotationHandler.LinkAttributeAugmenter() {
       @Override

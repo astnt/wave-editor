@@ -1,6 +1,8 @@
 package com.appspot.ast.client.layout;
 
 import com.appspot.ast.client.editor.Toolbar;
+import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteDoodad;
+import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteWidget;
 import com.appspot.ast.client.editor.doodad.phone.PhoneWidget;
 import com.appspot.ast.client.editor.harness.GenericHarness;
 import com.appspot.ast.client.editor.toolbar.ToolbarUpdateListener;
@@ -61,6 +63,7 @@ public class WaveEditor extends Composite {
   @UiField DivElement richEditorContainer;
 
   @UiField PhoneWidget phoneDoodad;
+  @UiField BlockQuoteWidget blockQuoteDoodad;
 
   public WaveEditor() {
     harness = new GenericHarness();
@@ -85,17 +88,32 @@ public class WaveEditor extends Composite {
         || target.getParentElement().getParentElement().equals(phoneDoodad.getElement())
         ) {
       handlePhoneDoodadClick();
+    } else if (target.equals(blockQuoteDoodad.getElement()) || target.getParentElement().equals(blockQuoteDoodad.getElement())) {
+      handleBlockQuoteClick();
     }
   }
 
-  private void handlePhoneDoodadClick() {
-//    Range range = harness.getRichEditor().getSelectionHelper().getOrderedSelectionRange();
-//    Window.alert("phoneDoodad range=" + range);
+  private void handleBlockQuoteClick() {
     Range range = toolbarUpdateListener.getSelectionRange();
-    Window.alert("phoneDoodad range=" + range);
-//    Window.alert("phoneDoodad range=" + range.getStart() + " - " + range.getEnd());
+//    Window.alert("blockQuote range=" + range);
     if (range == null) {
-      Window.alert("Select place in text to insert an image.");
+      Window.alert("Select place in text to insert blockqoute.");
+      return;
+    }
+    final CMutableDocument document = harness.getEditor().getDocument();
+    final Point<ContentNode> point = document.locate(range.getStart());
+//    document.insertXml(point, XmlStringBuilder.
+//        createFromXmlString("<blockqoute>blockqoute</blockqoute>"));
+    document.insertXml(point, XmlStringBuilder.
+      createFromXmlString("<" + BlockQuoteDoodad.TAGNAME + ">blockquote</" + BlockQuoteDoodad.TAGNAME + ">"));
+    harness.getEditor().focus(false);
+  }
+
+  private void handlePhoneDoodadClick() {
+    Range range = toolbarUpdateListener.getSelectionRange();
+//    Window.alert("phoneDoodad range=" + range);
+    if (range == null) {
+      Window.alert("Select place in text to insert phone.");
       return;
     }
     final CMutableDocument document = harness.getEditor().getDocument();
@@ -112,6 +130,10 @@ public class WaveEditor extends Composite {
     number.setInnerText("number");
     phoneDoodad.getContainer().appendChild(code);
     phoneDoodad.getContainer().appendChild(number);
+    phoneDoodad.getElement().getStyle().setDisplay(Style.Display.BLOCK);
+
+    blockQuoteDoodad.getContainer().setInnerText("blockquote");
+    blockQuoteDoodad.getElement().getStyle().setDisplay(Style.Display.BLOCK);
   }
 
   public void setText(String text) {

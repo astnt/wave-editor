@@ -15,6 +15,7 @@ public class WaveEditorPoint implements EntryPoint {
     editor.setText("<doc>\n" +
         "  <body>\n" +
         "    <line>\n" +
+        "      <blockquote>Phone:</blockquote>\n" +
         "      <text>Phone: </text>\n" +
         "      <phone>\n" +
         "        <code>465</code><number>746-45-16</number>\n" +

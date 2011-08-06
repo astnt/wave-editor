@@ -152,7 +152,7 @@ public class PrettyWithAttributes<N> {
   }
 
   static boolean isInline(String tag) {
-    return "|b|u|i|code|number|s|l:s|".contains("|" + tag + "|");
+    return "|b|u|i|code|number|blockquote|s|l:s|".contains("|" + tag + "|");
   }
 
   /**

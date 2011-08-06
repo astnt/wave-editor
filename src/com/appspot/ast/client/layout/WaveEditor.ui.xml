@@ -2,7 +2,8 @@
     xmlns:ui='urn:ui:com.google.gwt.uibinder'
     xmlns:g='urn:import:com.google.gwt.user.client.ui'
     xmlns:ww='urn:import:com.appspot.ast.client.editor'
-    xmlns:df='urn:import:com.appspot.ast.client.editor.doodad.phone'
+    xmlns:dphone='urn:import:com.appspot.ast.client.editor.doodad.phone'
+    xmlns:dblockquote='urn:import:com.appspot.ast.client.editor.doodad.blockquote'
   >
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
@@ -109,7 +110,8 @@
     <div class="{style.stylePanel}">
       <ul>
         <li>
-          <df:PhoneWidget ui:field="phoneDoodad" />
+          <dphone:PhoneWidget ui:field="phoneDoodad" />
+          <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad" />
         </li>
       </ul>
     </div>
