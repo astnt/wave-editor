@@ -5,6 +5,7 @@ import com.appspot.ast.client.editor.EditorStreamingXmlParser;
 import com.appspot.ast.client.editor.PrettyWithAttributes;
 import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteDoodad;
 import com.appspot.ast.client.editor.doodad.my.MyDoodad;
+import com.appspot.ast.client.editor.doodad.paragraph.ParagraphDoodad;
 import com.appspot.ast.client.editor.doodad.phone.PhoneDoodad;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -140,7 +141,11 @@ public class GenericHarness implements KeySignalListener {
         addChildren("body", MyDoodad.TAGNAME);
         addChildren("body", PhoneDoodad.TAGNAME);
         addChildren("body", BlockQuoteDoodad.TAGNAME);
+        addChildren("body", ParagraphDoodad.TAGNAME);
         containsBlipText(BlockQuoteDoodad.TAGNAME);
+        containsBlipText(ParagraphDoodad.TAGNAME);
+        addChildren(BlockQuoteDoodad.TAGNAME, PhoneDoodad.TAGNAME);
+        addChildren(BlockQuoteDoodad.TAGNAME, ParagraphDoodad.TAGNAME);
 
         // Permit a 'ref' attribute on the <mydoodad> element.
         // e.g. permit content like <mydoodad ref='pics/wave.gif'/>
@@ -205,6 +210,7 @@ public class GenericHarness implements KeySignalListener {
     MyDoodad.register(registries.getElementHandlerRegistry());
     PhoneDoodad.register(registries.getElementHandlerRegistry());
     BlockQuoteDoodad.register(registries.getElementHandlerRegistry());
+    ParagraphDoodad.register(registries.getElementHandlerRegistry());
 
     LinkAnnotationHandler.register(registries, new LinkAnnotationHandler.LinkAttributeAugmenter() {
       @Override

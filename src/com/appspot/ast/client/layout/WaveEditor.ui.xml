@@ -4,6 +4,7 @@
     xmlns:ww='urn:import:com.appspot.ast.client.editor'
     xmlns:dphone='urn:import:com.appspot.ast.client.editor.doodad.phone'
     xmlns:dblockquote='urn:import:com.appspot.ast.client.editor.doodad.blockquote'
+    xmlns:dparagraph='urn:import:com.appspot.ast.client.editor.doodad.paragraph'
   >
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
@@ -112,6 +113,7 @@
         <li>
           <dphone:PhoneWidget ui:field="phoneDoodad" />
           <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad" />
+          <dparagraph:ParagraphWidget ui:field="paragraphDoodad" />
         </li>
       </ul>
     </div>

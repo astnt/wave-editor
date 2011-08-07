@@ -3,6 +3,7 @@ package com.appspot.ast.client.layout;
 import com.appspot.ast.client.editor.Toolbar;
 import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteDoodad;
 import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteWidget;
+import com.appspot.ast.client.editor.doodad.paragraph.ParagraphWidget;
 import com.appspot.ast.client.editor.doodad.phone.PhoneWidget;
 import com.appspot.ast.client.editor.harness.GenericHarness;
 import com.appspot.ast.client.editor.toolbar.ToolbarUpdateListener;
@@ -64,6 +65,7 @@ public class WaveEditor extends Composite {
 
   @UiField PhoneWidget phoneDoodad;
   @UiField BlockQuoteWidget blockQuoteDoodad;
+  @UiField ParagraphWidget paragraphDoodad;
 
   public WaveEditor() {
     harness = new GenericHarness();
@@ -90,14 +92,30 @@ public class WaveEditor extends Composite {
       handlePhoneDoodadClick();
     } else if (target.equals(blockQuoteDoodad.getElement()) || target.getParentElement().equals(blockQuoteDoodad.getElement())) {
       handleBlockQuoteClick();
+    } else if (target.equals(paragraphDoodad.getElement())) {
+      handleParagraphClick();
     }
+  }
+
+  private void handleParagraphClick() {
+//    Window.alert("paragraph");
+    Range range = toolbarUpdateListener.getSelectionRange();
+    if (range == null) {
+      Window.alert("Select place in text to insert paragraph.");
+      return;
+    }
+    final CMutableDocument document = harness.getEditor().getDocument();
+    final Point<ContentNode> point = document.locate(range.getStart());
+    document.insertXml(point, XmlStringBuilder.
+        createFromXmlString("<p>paragraph</p>"));
+    harness.getEditor().focus(false);
   }
 
   private void handleBlockQuoteClick() {
     Range range = toolbarUpdateListener.getSelectionRange();
 //    Window.alert("blockQuote range=" + range);
     if (range == null) {
-      Window.alert("Select place in text to insert blockqoute.");
+      Window.alert("Select place in text to insert blockquote.");
       return;
     }
 //    harness.getRichEditor().getContent().getNodeManager().
@@ -138,6 +156,9 @@ public class WaveEditor extends Composite {
 
     blockQuoteDoodad.getContainer().setInnerText("blockquote");
     blockQuoteDoodad.getElement().getStyle().setDisplay(Style.Display.BLOCK);
+
+    paragraphDoodad.getContainer().setInnerText("paragraph");
+    paragraphDoodad.getElement().getStyle().setDisplay(Style.Display.BLOCK);
   }
 
   public void setText(String text) {
