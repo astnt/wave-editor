@@ -5,7 +5,9 @@
     xmlns:dphone='urn:import:com.appspot.ast.client.editor.doodad.phone'
     xmlns:dblockquote='urn:import:com.appspot.ast.client.editor.doodad.blockquote'
     xmlns:dparagraph='urn:import:com.appspot.ast.client.editor.doodad.paragraph'
+    xmlns:dvideo='urn:import:com.appspot.ast.client.editor.doodad.video'
   >
+  <ui:image field="video" src="youtube.png"/>
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
 
@@ -39,18 +41,6 @@
       background: #f0f0f0;
     }
 
-    /*.wysiwyg .source, .source .wysiwyg {*/
-    /*display: none;*/
-    /*}*/
-
-    /*.wysiwyg .wysiwyg {*/
-    /*display: block;*/
-    /*}*/
-
-    /*.source .source {*/
-    /*display: block;*/
-    /*}*/
-
     .wysiwygTab, .sourceTab, .logTab {
       padding: .2em .4em;
       float: left;
@@ -61,29 +51,42 @@
       border-bottom: solid 2px silver;
     }
 
-    .editor, .stylePanel{
-      float:left;
+    .editor, .stylePanel {
+      float: left;
     }
+
     .editor {
-      width:80%;
+      width: 80%;
     }
+
     .stylePanel {
-      width:19%;
-      background:#f0f0f0;
+      width: 19%;
+      background: #f0f0f0;
     }
+
     .stylePanel ul {
-      margin:.3em;
-      padding:.4em;
+      margin: .3em;
+      padding: .4em;
       list-style: none;
       background: white;
     }
+
     .stylePanel ul li div {
-      border:solid 2px white;
-      padding:.2em;
-      cursor:pointer;
+      border: solid 2px white;
+      padding: .2em;
+      cursor: pointer;
     }
+
     .stylePanel ul li div:hover {
-      border:solid 2px #ff7f50;
+      border: solid 2px #ff7f50;
+    }
+
+    @sprite .videoDoodad {
+      gwt-image: "video";
+      background-position:center right;
+      background-repeat: no-repeat;
+      width: 110px;
+      height: 40px;
     }
   </ui:style>
   <g:HTMLPanel styleName="{style.item} {style.wysiwyg}">
@@ -111,9 +114,11 @@
     <div class="{style.stylePanel}">
       <ul>
         <li>
-          <dphone:PhoneWidget ui:field="phoneDoodad" />
-          <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad" />
-          <dparagraph:ParagraphWidget ui:field="paragraphDoodad" />
+          <dphone:PhoneWidget ui:field="phoneDoodad"/>
+          <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad"/>
+          <dparagraph:ParagraphWidget ui:field="paragraphDoodad"/>
+          <!--<dvideo:VideoWidget ui:field="videoDoodad" styleName="{style.videoDoodad}"/>-->
+          <div ui:field="videoYoutube" class="{style.videoDoodad}"></div>
         </li>
       </ul>
     </div>

@@ -17,12 +17,12 @@ public class WaveEditorPoint implements EntryPoint {
         "    <text>Paragraph sample.</text>\n" +
         "  </p>\n" +
         "  <blockquote>\n" +
-        "    <text>Phone:</text>\n" +
+        "    <text>Цитата:</text>\n" +
         "    <p>\n" +
-        "      <text>Sample text for paragraph</text>\n" +
+        "      <text>В столкновениях с правительственными войсками в Сирии 7 августа погибли не менее 57 человек. Большая часть погибших - жители мятежного города Дейр-эз-Зор на востоке страны. В ходе штурма города с применением танков здесь были убиты 38 человек. Остальные стали жертвами столкновений в других городах.</text>\n" +
         "    </p>\n" +
         "    <p>\n" +
-        "      <text>another para in blockquote</text>\n" +
+        "      <text>Россия не планирует пересматривать объем вложений резервного фонда в долларах в связи с понижением кредитного рейтинга США агентством. Об этом заявили замминистра финансов Сергей Сторчак и зампред ЦБ Сергей Швецов.</text>\n" +
         "    </p>\n" +
         "  </blockquote><text>Phone: </text>\n" +
         "  <phone>\n" +
@@ -33,6 +33,7 @@ public class WaveEditorPoint implements EntryPoint {
         "  <text>text</text>\n" +
         "</line>\n" +
         "<line>\n" +
+        "  <video src=\"http://www.youtube.com/embed/5ZxRuxSZfzw\"/>\n" +
         "  <p>\n" +
         "    <text>First para</text>\n" +
         "  </p>\n" +

@@ -7,6 +7,7 @@ import com.appspot.ast.client.editor.doodad.blockquote.BlockQuoteDoodad;
 import com.appspot.ast.client.editor.doodad.my.MyDoodad;
 import com.appspot.ast.client.editor.doodad.paragraph.ParagraphDoodad;
 import com.appspot.ast.client.editor.doodad.phone.PhoneDoodad;
+import com.appspot.ast.client.editor.doodad.video.VideoDoodad;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
@@ -84,7 +85,7 @@ public class GenericHarness implements KeySignalListener {
       richEditor.addUpdateListener(new EditorUpdateEvent.EditorUpdateListener() {
         @Override
         public void onUpdate(EditorUpdateEvent editorUpdateEvent) {
-          outputEditorState(richEditor);
+//          outputEditorState(richEditor);
         }
       });
     }
@@ -142,14 +143,18 @@ public class GenericHarness implements KeySignalListener {
         addChildren("body", PhoneDoodad.TAGNAME);
         addChildren("body", BlockQuoteDoodad.TAGNAME);
         addChildren("body", ParagraphDoodad.TAGNAME);
+        addChildren("body", VideoDoodad.TAGNAME);
         containsBlipText(BlockQuoteDoodad.TAGNAME);
         containsBlipText(ParagraphDoodad.TAGNAME);
         addChildren(BlockQuoteDoodad.TAGNAME, PhoneDoodad.TAGNAME);
         addChildren(BlockQuoteDoodad.TAGNAME, ParagraphDoodad.TAGNAME);
+        addChildren(BlockQuoteDoodad.TAGNAME, VideoDoodad.TAGNAME);
+        addChildren(ParagraphDoodad.TAGNAME, VideoDoodad.TAGNAME);
 
         // Permit a 'ref' attribute on the <mydoodad> element.
         // e.g. permit content like <mydoodad ref='pics/wave.gif'/>
         addAttrs(MyDoodad.TAGNAME, MyDoodad.REF_ATTR);
+        addAttrs(VideoDoodad.TAGNAME, VideoDoodad.REF_ATTR);
 
         // Permit our caption element to appear inside our doodad's main
         // element, e.g.
@@ -211,6 +216,7 @@ public class GenericHarness implements KeySignalListener {
     PhoneDoodad.register(registries.getElementHandlerRegistry());
     BlockQuoteDoodad.register(registries.getElementHandlerRegistry());
     ParagraphDoodad.register(registries.getElementHandlerRegistry());
+    VideoDoodad.register(registries.getElementHandlerRegistry());
 
     LinkAnnotationHandler.register(registries, new LinkAnnotationHandler.LinkAttributeAugmenter() {
       @Override
@@ -299,5 +305,9 @@ public class GenericHarness implements KeySignalListener {
       logger.error().log(e);
     }
     return result;
+  }
+
+  public void outputEditorState() {
+    outputEditorState(richEditor);
   }
 }

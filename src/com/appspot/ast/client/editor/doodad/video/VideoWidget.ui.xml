@@ -1,0 +1,32 @@
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
+    >
+  <ui:style>
+    .item {
+      display: inline-block;
+      position: relative;
+      margin: 1em;
+      line-height: 1.5em;
+    }
+
+    .item > * {
+      border: 1px solid white;
+      background: transparent;
+    }
+
+    @if user.agent gecko1_8 {
+      .top {
+        white-space: normal;
+      }
+    }
+
+    .top {
+
+    }
+  </ui:style>
+  <gwt:HTMLPanel styleName='{style.item}'>
+    <!--<iframe ui:field="iframe" width="300" height="200" src="http://www.youtube.com/embed/FplWxtPzWY8" frameborder="0"></iframe>-->
+    <iframe ui:field="iframe" width="300" height="200" frameborder="0"></iframe>
+  </gwt:HTMLPanel>
+</ui:UiBinder>

@@ -8,6 +8,7 @@ import com.appspot.ast.client.editor.doodad.phone.PhoneWidget;
 import com.appspot.ast.client.editor.harness.GenericHarness;
 import com.appspot.ast.client.editor.toolbar.ToolbarUpdateListener;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -50,6 +51,7 @@ public class WaveEditor extends Composite {
     String editor();
     String stylePanel();
     String logTab();
+    String videoDoodad();
   }
 
   @UiField MyStyle style;
@@ -66,6 +68,7 @@ public class WaveEditor extends Composite {
   @UiField PhoneWidget phoneDoodad;
   @UiField BlockQuoteWidget blockQuoteDoodad;
   @UiField ParagraphWidget paragraphDoodad;
+  @UiField DivElement videoYoutube;
 
   public WaveEditor() {
     harness = new GenericHarness();
@@ -80,6 +83,13 @@ public class WaveEditor extends Composite {
 
     sinkEvents(Event.ONCLICK);
     harness.getEditor().addUpdateListener(toolbarUpdateListener = new ToolbarUpdateListener(harness.getEditor()));
+
+    GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
+      @Override
+      public void onUncaughtException(Throwable e) {
+        Window.alert(e.getLocalizedMessage());
+      }
+    });
   }
 
   @Override
@@ -94,6 +104,20 @@ public class WaveEditor extends Composite {
       handleBlockQuoteClick();
     } else if (target.equals(paragraphDoodad.getElement())) {
       handleParagraphClick();
+    } else if (target.equals(videoYoutube.<JavaScriptObject>cast())) {
+      handleVideoClick();
+    }
+  }
+
+  private void handleVideoClick() {
+    Range range = toolbarUpdateListener.getSelectionRange();
+    if (range == null) {
+      Window.alert("Select place in text to insert video.");
+      return;
+    }
+    String youtubeSrc = Window.prompt("Youtube src (embedded links only)", "http://www.youtube.com/embed/FplWxtPzWY8");
+    if (youtubeSrc != null) {
+      insertXml(range, "<video src=\"" + youtubeSrc + "\"/>");
     }
   }
 
@@ -104,11 +128,7 @@ public class WaveEditor extends Composite {
       Window.alert("Select place in text to insert paragraph.");
       return;
     }
-    final CMutableDocument document = harness.getEditor().getDocument();
-    final Point<ContentNode> point = document.locate(range.getStart());
-    document.insertXml(point, XmlStringBuilder.
-        createFromXmlString("<p>paragraph</p>"));
-    harness.getEditor().focus(false);
+    insertXml(range, "<p>paragraph</p>");
   }
 
   private void handleBlockQuoteClick() {
@@ -126,9 +146,7 @@ public class WaveEditor extends Composite {
     final Point<ContentNode> point = document.locate(range.getStart());
 //    document.insertXml(point, XmlStringBuilder.
 //        createFromXmlString("<blockqoute>blockqoute</blockqoute>"));
-    document.insertXml(point, XmlStringBuilder.
-      createFromXmlString("<" + BlockQuoteDoodad.TAGNAME + ">blockquote</" + BlockQuoteDoodad.TAGNAME + ">"));
-    harness.getEditor().focus(false);
+    insertXml(range, "<" + BlockQuoteDoodad.TAGNAME + ">blockquote</" + BlockQuoteDoodad.TAGNAME + ">");
   }
 
   private void handlePhoneDoodadClick() {
@@ -140,8 +158,14 @@ public class WaveEditor extends Composite {
     }
     final CMutableDocument document = harness.getEditor().getDocument();
     final Point<ContentNode> point = document.locate(range.getStart());
+    insertXml(range, "<phone><code>code</code><number>number</number></phone>");
+  }
+
+  private void insertXml(Range range, String xmlContent) {
+    final CMutableDocument document = harness.getEditor().getDocument();
+    final Point<ContentNode> point = document.locate(range.getStart());
     document.insertXml(point, XmlStringBuilder.
-        createFromXmlString("<phone><code>code</code><number>number</number></phone>"));
+        createFromXmlString(xmlContent));
     harness.getEditor().focus(false);
   }
 
@@ -171,6 +195,7 @@ public class WaveEditor extends Composite {
   void handleClickSourceTab(ClickEvent event) {
     removeStyleName(style.wysiwyg());
     addStyleName(style.source());
+    harness.outputEditorState();
     updateView();
   }
 
