@@ -100,6 +100,10 @@ public class WaveEditor extends Composite {
       Window.alert("Select place in text to insert blockqoute.");
       return;
     }
+//    harness.getRichEditor().getContent().getNodeManager().
+//    harness.getRichEditor().getContent().getContext().document().deleteRange()
+//    harness.getRichEditor().getContent().getContext().document().getData()
+//    harness.getRichEditor().getSelectionHelper().getOrderedSelectionPoints().
     final CMutableDocument document = harness.getEditor().getDocument();
     final Point<ContentNode> point = document.locate(range.getStart());
 //    document.insertXml(point, XmlStringBuilder.
@@ -153,7 +157,7 @@ public class WaveEditor extends Composite {
   public void handleClickWysiwygTab(ClickEvent event) {
     removeStyleName(style.source());
     addStyleName(style.wysiwyg());
-    setText(sourceAdopted.getText());
+    setText("<doc><body>" + sourceAdopted.getText() + "</body></doc>");
     updateView();
   }
 

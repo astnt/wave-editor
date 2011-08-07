@@ -145,7 +145,7 @@ public class PrettyWithAttributes<N> {
     T text = doc.asText(node);
     boolean result = text != null || isInline(doc.getTagName(element).toLowerCase());
     if (element != null) {
-      GWT.log(("<" + doc.getTagName(element) + "/>") +" inline=" + inline);
+//      GWT.log(("<" + doc.getTagName(element) + "/>") +" inline=" + inline);
       inline = result;
     }
     return result;
@@ -240,10 +240,13 @@ public class PrettyWithAttributes<N> {
    */
   private <E extends N, T extends N> void appendStartTag(
       ReadableDocument<N, E, T> doc, E element, boolean selfClosing) {
-    append("<");
-    appendTagName(doc, element);
-    appendAttributes(doc, element);
-    append(selfClosing ? "/>" : ">");
+//    GWT.log("tag=" + doc.getTagName(element));
+    if (isShowTag(doc.getTagName(element))) {
+      append("<");
+      appendTagName(doc, element);
+      appendAttributes(doc, element);
+      append(selfClosing ? "/>" : ">");
+    }
   }
 
   /**
@@ -254,9 +257,15 @@ public class PrettyWithAttributes<N> {
    */
   private <E extends N, T extends N> void appendEndTag(
       ReadableDocument<N, E, T> doc, E element) {
-    append("</");
-    appendTagName(doc, element);
-    append(">");
+    if (isShowTag(doc.getTagName(element))) {
+      append("</");
+      appendTagName(doc, element);
+      append(">");
+    }
+  }
+
+  private boolean isShowTag(String tagName) {
+    return !"|doc|body|".contains(tagName);
   }
 
   /**
@@ -280,23 +289,25 @@ public class PrettyWithAttributes<N> {
       // Children
       N child = firstChild;
       boolean first = true;
-      ++indent;
+      boolean showTag = isShowTag(doc.getTagName(element));
+      if (showTag) { ++indent; }
       while (child != null) {
         N next = doc.getNextSibling(child);
         if ((first && !isInline(doc, element)) || !isInline(doc, child)) {
-          appendNewLine();
+          if (showTag) { appendNewLine(); }
         }
         appendNode(doc, child);
         first = false;
         child = next;
       }
-      --indent;
+      if (showTag) { --indent; }
 
       // End tag
       if ((!isInline(doc, element)) || !isInline(doc, firstChild)) {
-        appendNewLine();
+        if (showTag) { appendNewLine(); }
       }
       appendEndTag(doc, element);
+      if ("l:p".equals(doc.getTagName(element))) { appendNewLine(); }
     }
   }
 
@@ -313,7 +324,7 @@ public class PrettyWithAttributes<N> {
 //    String value = displayWhitespace(doc.getData(text));
     String value = doc.getData(text);
 
-    GWT.log("inline=" + inline + " text=" + value);
+//    GWT.log("inline=" + inline + " text=" + value);
     // Append text and selection markers
     if (inline) {
       append(value);
