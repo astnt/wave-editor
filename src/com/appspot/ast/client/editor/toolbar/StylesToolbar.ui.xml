@@ -1,0 +1,35 @@
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:ww='urn:import:com.appspot.ast.client.editor'
+    xmlns:dphone='urn:import:com.appspot.ast.client.editor.doodad.phone'
+    xmlns:dblockquote='urn:import:com.appspot.ast.client.editor.doodad.blockquote'
+    xmlns:dparagraph='urn:import:com.appspot.ast.client.editor.doodad.paragraph'
+    xmlns:dvideo='urn:import:com.appspot.ast.client.editor.doodad.video'
+    >
+  <ui:image field="video" src="youtube.png"/>
+  <ui:style>
+    .item {
+
+    }
+
+    @sprite .videoDoodad {
+      gwt-image: "video";
+      background-position: center right;
+      background-repeat: no-repeat;
+      width: 110px;
+      height: 40px;
+    }
+  </ui:style>
+  <g:HTMLPanel styleName="{style.item}">
+    <ul>
+      <li>
+        <dphone:PhoneWidget ui:field="phoneDoodad"/>
+        <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad"/>
+        <dparagraph:ParagraphWidget ui:field="paragraphDoodad"/>
+        <!--<dvideo:VideoWidget ui:field="videoDoodad" styleName="{style.videoDoodad}"/>-->
+        <div ui:field="videoYoutube" class="{style.videoDoodad}"></div>
+      </li>
+    </ul>
+  </g:HTMLPanel>
+</ui:UiBinder>

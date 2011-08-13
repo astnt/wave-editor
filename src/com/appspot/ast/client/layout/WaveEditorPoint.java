@@ -12,7 +12,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class WaveEditorPoint implements EntryPoint {
   public void onModuleLoad() {
     final WaveEditor editor = new WaveEditor();
-    editor.setText("<doc><body><line>\n" +
+    editor.setText("<line>\n" +
         "  <p>\n" +
         "    <text>Paragraph sample.</text>\n" +
         "  </p>\n" +
@@ -56,7 +56,7 @@ public class WaveEditorPoint implements EntryPoint {
         "</line>\n" +
         "<line>\n" +
         "  <text>Еще дополнительный текст</text>\n" +
-        "</line></body></doc>");
+        "</line>");
     RootPanel.get().add(editor);
   }
 }

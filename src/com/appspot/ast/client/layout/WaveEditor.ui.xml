@@ -6,6 +6,7 @@
     xmlns:dblockquote='urn:import:com.appspot.ast.client.editor.doodad.blockquote'
     xmlns:dparagraph='urn:import:com.appspot.ast.client.editor.doodad.paragraph'
     xmlns:dvideo='urn:import:com.appspot.ast.client.editor.doodad.video'
+    xmlns:t='urn:import:com.appspot.ast.client.editor.toolbar'
   >
   <ui:image field="video" src="youtube.png"/>
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
@@ -80,14 +81,6 @@
     .stylePanel ul li div:hover {
       border: solid 2px #ff7f50;
     }
-
-    @sprite .videoDoodad {
-      gwt-image: "video";
-      background-position:center right;
-      background-repeat: no-repeat;
-      width: 110px;
-      height: 40px;
-    }
   </ui:style>
   <g:HTMLPanel styleName="{style.item} {style.wysiwyg}">
     <div class="{style.editor}">
@@ -111,17 +104,7 @@
         </div>
       </div>
     </div>
-    <div class="{style.stylePanel}">
-      <ul>
-        <li>
-          <dphone:PhoneWidget ui:field="phoneDoodad"/>
-          <dblockquote:BlockQuoteWidget ui:field="blockQuoteDoodad"/>
-          <dparagraph:ParagraphWidget ui:field="paragraphDoodad"/>
-          <!--<dvideo:VideoWidget ui:field="videoDoodad" styleName="{style.videoDoodad}"/>-->
-          <div ui:field="videoYoutube" class="{style.videoDoodad}"></div>
-        </li>
-      </ul>
-    </div>
+    <t:StylesToolbar ui:field="stylePanel" styleName="{style.stylePanel}"/>
     <br style="clear:both;"/>
     <g:HTML ui:field="log" styleName="{style.log}" />
   </g:HTMLPanel>
