@@ -1,8 +1,8 @@
 package com.appspot.ast.client.layout;
 
-import com.appspot.ast.client.editor.Toolbar;
 import com.appspot.ast.client.editor.harness.GenericHarness;
 import com.appspot.ast.client.editor.toolbar.StylesToolbar;
+import com.appspot.ast.client.editor.toolbar.Toolbar;
 import com.appspot.ast.client.editor.toolbar.ToolbarUpdateListener;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
@@ -53,7 +53,6 @@ public class WaveEditor extends Composite {
   @UiField RadioButton sourceTab;
   @UiField CheckBox logTab;
   @UiField DivElement richEditorContainer;
-  @UiField StylesToolbar stylePanel;
 
   @UiFactory
   public StylesToolbar makeStylesToolbar() {

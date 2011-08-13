@@ -57,10 +57,11 @@
     }
 
     .editor {
-      width: 80%;
+      /*width: 80%;*/
     }
 
     .stylePanel {
+      display: none;
       width: 19%;
       background: #f0f0f0;
     }
@@ -84,7 +85,7 @@
   </ui:style>
   <g:HTMLPanel styleName="{style.item} {style.wysiwyg}">
     <div class="{style.editor}">
-      <ww:Toolbar ui:field="toolbar"/>
+      <t:Toolbar ui:field="toolbar"/>
       <div style="{style.wysiwyg}" ui:field="richEditorContainer">
         <g:Widget ui:field="richEditorLayout"/>
       </div>
@@ -104,7 +105,7 @@
         </div>
       </div>
     </div>
-    <t:StylesToolbar ui:field="stylePanel" styleName="{style.stylePanel}"/>
+    <t:StylesToolbar styleName="{style.stylePanel}"/>
     <br style="clear:both;"/>
     <g:HTML ui:field="log" styleName="{style.log}" />
   </g:HTMLPanel>

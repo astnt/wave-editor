@@ -1,4 +1,4 @@
-package com.appspot.ast.client.editor;
+package com.appspot.ast.client.editor.toolbar;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Document;
@@ -69,6 +69,7 @@ public class Toolbar extends Composite {
     String fontFamily();
     String outdent();
     String heading();
+    String gadget();
   }
   interface MyResources extends ClientBundle {
     @Source("images/edit/bold.png")
@@ -120,7 +121,7 @@ public class Toolbar extends Composite {
 
   private void createInsertImageButton(ToolbarView toolbar) {
     new ToolbarButtonViewBuilder()
-        .setText("Image")
+        .setIcon(css.gadget())
         .applyTo(toolbar.addClickButton(), new ToolbarClickButton.Listener() {
           @Override public void onClicked() {
             Range range = editor.getSelectionHelper().getOrderedSelectionRange();
