@@ -66,6 +66,7 @@ public class GenericHarness implements KeySignalListener {
   private ContentDocument document;
   private Editor richEditor;
   private TextArea sourceAdopted;
+  private FakeAttachmentsManager attachmentManager;
 
   public GenericHarness() {
     EditorStaticDeps.setPopupProvider(Popup.LIGHTWEIGHT_POPUP_PROVIDER);
@@ -233,12 +234,12 @@ public class GenericHarness implements KeySignalListener {
     FormDoodads.register(registries.getElementHandlerRegistry());
 
     // We'll need an attachment manager
-    FakeAttachmentsManager attachmentManager = new FakeAttachmentsManager();
+    attachmentManager = new FakeAttachmentsManager();
     // Create a few attachments
-    attachmentManager.createFakeAttachment("/pics/Snow.jpg", 120, 80);
-    attachmentManager.createFakeAttachment("/pics/yosemite.jpg", 120, 80);
-    attachmentManager.createFakeAttachment("/pics/hills.jpg", 120, 74);
-    attachmentManager.createFakeAttachment("/pics/Beautiful+View.jpg", 120, 74);
+//    attachmentManager.createFakeAttachment("/pics/Snow.jpg", 120, 80);
+//    attachmentManager.createFakeAttachment("/pics/yosemite.jpg", 120, 80);
+//    attachmentManager.createFakeAttachment("/pics/hills.jpg", 120, 74);
+//    attachmentManager.createFakeAttachment("/pics/Beautiful+View.jpg", 120, 74);
 
     ImageThumbnail.register(registries.getElementHandlerRegistry(), attachmentManager,
         new ImageThumbnail.ThumbnailActionHandler() {
@@ -310,5 +311,9 @@ public class GenericHarness implements KeySignalListener {
 
   public String getText() {
     return new PrettyWithAttributes<ContentNode>().print(richEditor.getContent().getRenderedView());
+  }
+
+  public FakeAttachmentsManager getAttachmentManager() {
+    return attachmentManager;
   }
 }

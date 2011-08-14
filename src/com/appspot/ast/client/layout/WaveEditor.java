@@ -18,6 +18,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -62,11 +63,20 @@ public class WaveEditor extends Composite implements HasValue<String> {
   }
 
   public WaveEditor() {
+    this(Arrays.asList((ToolbarBuilder) new WaveToolbarBuilder()));
+
+    addAttachment("/pics/Snow.jpg", 120, 80);
+    addAttachment("/pics/yosemite.jpg", 120, 80);
+    addAttachment("/pics/hills.jpg", 120, 74);
+    addAttachment("/pics/Beautiful+View.jpg", 120, 74);
+  }
+
+  public WaveEditor(List<ToolbarBuilder> builders) {
     harness = new GenericHarness();
     richEditorLayout = harness.getRichEditorWidget();
     initWidget(Binder.BINDER.createAndBindUi(this));
     toolbar.createButtons(harness.getEditor(), harness.getRichEditor(), harness.getUpdater(),
-        Arrays.asList((ToolbarBuilder) new WaveToolbarBuilder()));
+        builders);
     harness.addUpdateListener(sourceAdopted);
     harness.enableLog(log);
     handleClickLogTab(null);
@@ -131,5 +141,9 @@ public class WaveEditor extends Composite implements HasValue<String> {
 
   private Style.Display isDisplay(boolean isDisplay) {
     return isDisplay ? Style.Display.BLOCK : Style.Display.NONE;
+  }
+
+  public void addAttachment(String url, int thumbnailWidth, int thumbnailHeight) {
+    harness.getAttachmentManager().createFakeAttachment(url, thumbnailWidth, thumbnailHeight);
   }
 }

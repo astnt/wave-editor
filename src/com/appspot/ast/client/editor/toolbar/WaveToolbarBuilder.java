@@ -85,37 +85,37 @@ public class WaveToolbarBuilder extends Composite implements ToolbarBuilder {
   @UiField MyResources res = GWT.create(MyResources.class);
 
   @Override
-  public void create(ToplevelToolbarWidget toolbarUi, ButtonUpdater updater, EditorContextAdapter editorContextAdapter) {
+  public void create(ToplevelToolbarWidget ui, ButtonUpdater updater, EditorContextAdapter editorContextAdapter) {
     this.updater = updater;
     this.editorContextAdapter = editorContextAdapter;
-    ToolbarView group = toolbarUi.addGroup();
+    ToolbarView group = ui.addGroup();
     createBoldButton(group);
     createItalicButton(group);
     createUnderlineButton(group);
     createStrikethroughButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createSuperscriptButton(group);
     createSubscriptButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createFontSizeButton(group);
     createFontFamilyButton(group);
     createHeadingButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createIndentButton(group);
     createOutdentButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createUnorderedListButton(group);
     createOrderedListButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createAlignButtons(group);
     createClearFormattingButton(group);
 
-    group = toolbarUi.addGroup();
+    group = ui.addGroup();
     createInsertLinkButton(group);
     createRemoveLinkButton(group);
     createInsertImageButton(group);
