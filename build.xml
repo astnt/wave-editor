@@ -118,11 +118,11 @@
       <arg value="8080"/>
       <!-- Additional arguments like -style PRETTY or -logLevel DEBUG -->
       <arg line="${gwt.args}"/>
-      <arg value="com.appspot.ast.WaveEditor"/>
+      <arg value="com.appspot.ast.WaveEditorLaunch"/>
     </java>
   </target>
 
-  <target name="dist" depends="prepare" description="Make jar file">
+  <target name="dist" depends="prepare,javac" description="Make jar file">
     <jar destfile="${jar.dist}/wave-editor.jar" basedir="${classes.dir}">
       <fileset dir="src" />
     </jar>

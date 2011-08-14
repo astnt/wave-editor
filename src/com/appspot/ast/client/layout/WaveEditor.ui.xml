@@ -11,7 +11,7 @@
   <ui:image field="video" src="youtube.png"/>
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
-
+      width: 100%;
     }
 
     .source {

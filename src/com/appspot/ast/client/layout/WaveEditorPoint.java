@@ -1,6 +1,10 @@
 package com.appspot.ast.client.layout;
 
 import com.google.gwt.core.client.EntryPoint;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
@@ -12,7 +16,7 @@ import com.google.gwt.user.client.ui.RootPanel;
 public class WaveEditorPoint implements EntryPoint {
   public void onModuleLoad() {
     final WaveEditor editor = new WaveEditor();
-    editor.setText("<line>\n" +
+    editor.setValue("<line>\n" +
         "  <p>\n" +
         "    <text>Paragraph sample.</text>\n" +
         "  </p>\n" +
@@ -58,5 +62,13 @@ public class WaveEditorPoint implements EntryPoint {
         "  <text>Еще дополнительный текст</text>\n" +
         "</line>");
     RootPanel.get().add(editor);
+    Button button = new Button("Get text");
+    button.addClickHandler(new ClickHandler() {
+      @Override
+      public void onClick(ClickEvent event) {
+        Window.alert(editor.getValue());
+      }
+    });
+    RootPanel.get().add(button);
   }
 }

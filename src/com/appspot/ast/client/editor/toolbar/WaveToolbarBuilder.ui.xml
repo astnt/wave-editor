@@ -1,0 +1,127 @@
+<ui:UiBinder
+    xmlns:ui='urn:ui:com.google.gwt.uibinder'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
+    xmlns:et="urn:import:org.waveprotocol.wave.client.widget.toolbar"
+    >
+  <ui:with  field="res" type="com.appspot.ast.client.editor.toolbar.WaveToolbarBuilder.MyResources"/>
+  <ui:image field="bold" src="images/edit/bold.png"/>
+  <ui:image field="italic" src="images/edit/italic.png"/>
+  <ui:image field="underline" src="images/edit/underline.png"/>
+  <ui:image field="strikethrough" src="images/edit/strike.png"/>
+  <ui:image field="superscript" src="images/edit/icon_superscript.png"/>
+  <ui:image field="subscript" src="images/edit/icon_subscript.png"/>
+
+  <ui:image field="fontSize" src="images/edit/font_size.png"/>
+  <ui:image field="fontFamily" src="images/edit/font_style.png"/>
+  <ui:image field="heading" src="images/edit/icon_heading.png"/>
+  <ui:image field="indent" src="images/edit/indent.png"/>
+  <ui:image field="outdent" src="images/edit/outdent.png"/>
+  <ui:image field="unorderedlist" src="images/edit/unordered_list.png"/>
+  <ui:image field="orderedlist" src="images/edit/ordered_list.png"/>
+  <ui:image field="alignDrop" src="images/edit/icon_align.png"/>
+  <ui:image field="alignLeft" src="images/edit/icon_align_left.png"/>
+  <ui:image field="alignCentre" src="images/edit/icon_align_centre.png"/>
+  <ui:image field="alignRight" src="images/edit/icon_align_right.png"/>
+  <ui:image field="alignJustify" src="images/edit/icon_align_justify.png"/>
+  <ui:image field="clearFormatting" src="images/edit/remove_formatting.png"/>
+  <ui:image field="insertLink" src="images/edit/createLink.png"/>
+  <ui:image field="removeLink" src="images/edit/removeLink.png"/>
+  <ui:image field="gadget" src="images/edit/gadget.png"/>
+
+  <ui:style field="css" type="com.appspot.ast.client.editor.toolbar.WaveToolbarBuilder.MyStyle">
+    .item {
+      border-left: solid 1px silver;
+      border-right: solid 1px silver;
+    }
+
+    @sprite .bold {
+      gwt-image: 'bold';
+    }
+
+    @sprite .italic {
+      gwt-image: 'italic';
+    }
+
+    @sprite .underline {
+      gwt-image: 'underline';
+    }
+
+    @sprite .strikethrough {
+      gwt-image: 'strikethrough';
+    }
+
+    @sprite .superscript {
+      gwt-image: 'superscript';
+    }
+
+    @sprite .subscript {
+      gwt-image: 'subscript';
+    }
+
+    @sprite .fontSize {
+      gwt-image: 'fontSize';
+    }
+
+    @sprite .fontFamily {
+      gwt-image: 'fontFamily';
+    }
+
+    @sprite .heading {
+      gwt-image: 'heading';
+    }
+
+    @sprite .indent {
+      gwt-image: 'indent';
+    }
+
+    @sprite .outdent {
+      gwt-image: 'outdent';
+    }
+
+    @sprite .unorderedlist {
+      gwt-image: 'unorderedlist';
+    }
+
+    @sprite .orderedlist {
+      gwt-image: 'orderedlist';
+    }
+
+    @sprite .alignDrop {
+      gwt-image: 'alignDrop';
+    }
+
+    @sprite .alignLeft {
+      gwt-image: 'alignLeft';
+    }
+
+    @sprite .alignCentre {
+      gwt-image: 'alignCentre';
+    }
+
+    @sprite .alignRight {
+      gwt-image: 'alignRight';
+    }
+
+    @sprite .alignJustify {
+      gwt-image: 'alignJustify';
+    }
+
+    @sprite .clearFormatting {
+      gwt-image: 'clearFormatting';
+    }
+
+    @sprite .insertLink {
+      gwt-image: 'insertLink';
+    }
+
+    @sprite .removeLink {
+      gwt-image: 'removeLink';
+    }
+
+    @sprite .gadget {
+      gwt-image: 'gadget';
+    }
+
+  </ui:style>
+  <g:HTMLPanel styleName="{css.item}"></g:HTMLPanel>
+</ui:UiBinder>

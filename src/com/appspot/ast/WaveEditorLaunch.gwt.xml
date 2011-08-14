@@ -1,0 +1,13 @@
+<module rename-to='gwteditor'>
+  <inherits name='com.google.gwt.user.User'/>
+
+  <inherits name="com.appspot.ast.WaveEditor"/>
+
+  <entry-point class="com.appspot.ast.client.layout.WaveEditorPoint"/>
+
+  <!-- Only build supported clients. -->
+  <set-property name="user.agent" value="safari,gecko1_8,ie6,ie8"/>
+  <set-property name="mobile.user.agent" value="not_mobile" />
+
+  <set-property name="loglevel" value="debug"/>
+</module>

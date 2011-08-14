@@ -175,11 +175,8 @@ public class GenericHarness implements KeySignalListener {
   private void outputEditorState(final Editor richEditor) {
     Runnable printer = new Runnable() {
       public void run() {
-//        String content1 = EditorDocFormatter.formatContentDomString(richEditor);
-//        String dom1 = EditorDocFormatter.formatPersistentDomString(richEditor);
         final ContentDocument content = richEditor.getContent();
         if (content != null) {
-//          source.setText(dom1);
           sourceAdopted.setText(new PrettyWithAttributes<ContentNode>().print(content.getRenderedView()));
         }
       }
@@ -309,5 +306,9 @@ public class GenericHarness implements KeySignalListener {
 
   public void outputEditorState() {
     outputEditorState(richEditor);
+  }
+
+  public String getText() {
+    return new PrettyWithAttributes<ContentNode>().print(richEditor.getContent().getRenderedView());
   }
 }

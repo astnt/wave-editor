@@ -1,13 +1,13 @@
 package com.appspot.ast.client.layout;
 
 import com.appspot.ast.client.editor.harness.GenericHarness;
-import com.appspot.ast.client.editor.toolbar.StylesToolbar;
-import com.appspot.ast.client.editor.toolbar.Toolbar;
-import com.appspot.ast.client.editor.toolbar.ToolbarUpdateListener;
+import com.appspot.ast.client.editor.toolbar.*;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.resources.client.CssResource;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiFactory;
@@ -17,13 +17,15 @@ import com.google.gwt.user.client.Event;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.*;
 
+import java.util.Arrays;
+
 /**
  * Created by IntelliJ IDEA.
  * User: anton
  * Date: 14.07.11
  * Time: 13:20
  */
-public class WaveEditor extends Composite {
+public class WaveEditor extends Composite implements HasValue<String> {
   private GenericHarness harness;
   private ToolbarUpdateListener toolbarUpdateListener;
 
@@ -63,7 +65,8 @@ public class WaveEditor extends Composite {
     harness = new GenericHarness();
     richEditorLayout = harness.getRichEditorWidget();
     initWidget(Binder.BINDER.createAndBindUi(this));
-    toolbar.createButtons(harness.getEditor(), harness.getRichEditor(), harness.getUpdater());
+    toolbar.createButtons(harness.getEditor(), harness.getRichEditor(), harness.getUpdater(),
+        Arrays.asList((ToolbarBuilder) new WaveToolbarBuilder()));
     harness.addUpdateListener(sourceAdopted);
     harness.enableLog(log);
     handleClickLogTab(null);
@@ -79,10 +82,24 @@ public class WaveEditor extends Composite {
     });
   }
 
-  public void setText(String text) {
-    if (!harness.setText("<doc><body>" + text + "</body></doc>")) {
+  public void setValue(String value) {
+    if (!harness.setText("<doc><body>" + value + "</body></doc>")) {
       Window.alert("Исходный код неправильный! В логе подробности");
     }
+  }
+
+  @Override
+  public void setValue(String value, boolean fireEvents) {
+    setValue(value);
+  }
+
+  public String getValue() {
+    return harness.getText();
+  }
+
+  @Override
+  public HandlerRegistration addValueChangeHandler(ValueChangeHandler<String> stringValueChangeHandler) {
+    return null;  //To change body of implemented methods use File | Settings | File Templates.
   }
 
   @UiHandler("sourceTab")
@@ -97,7 +114,7 @@ public class WaveEditor extends Composite {
   public void handleClickWysiwygTab(ClickEvent event) {
     removeStyleName(style.source());
     addStyleName(style.wysiwyg());
-    setText("<doc><body>" + sourceAdopted.getText() + "</body></doc>");
+    setValue(sourceAdopted.getText());
     updateView();
   }
 
