@@ -1,6 +1,6 @@
 <ui:UiBinder
     xmlns:ui='urn:ui:com.google.gwt.uibinder'
-    xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
+    xmlns:g='urn:import:com.google.gwt.user.client.ui'
     >
   <ui:style>
     .item {
@@ -15,18 +15,32 @@
       background: transparent;
     }
 
-    @if user.agent gecko1_8 {
-      .top {
-        white-space: normal;
-      }
+    @if user.agent gecko1_8
+    {
+    .top {
+      white-space: normal;
     }
+
+      }
 
     .top {
 
     }
+
+    .container {
+      background: #ccc;
+    }
+
+    .changeUrl {
+      padding: 2px;
+    }
   </ui:style>
-  <gwt:HTMLPanel styleName='{style.item}'>
-    <!--<iframe ui:field="iframe" width="300" height="200" src="http://www.youtube.com/embed/FplWxtPzWY8" frameborder="0"></iframe>-->
-    <iframe ui:field="iframe" width="300" height="200" frameborder="0"></iframe>
-  </gwt:HTMLPanel>
+  <g:HTMLPanel styleName='{style.item}'>
+    <div class="{style.container}">
+      <iframe ui:field="iframe" width="300" height="200" frameborder="0"></iframe>
+      <div>
+        <g:Button ui:field="changeUrl" text="Change URL" styleName="{style.changeUrl}"/>
+      </div>
+    </div>
+  </g:HTMLPanel>
 </ui:UiBinder>
