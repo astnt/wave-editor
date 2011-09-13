@@ -8,7 +8,7 @@
     xmlns:dvideo='urn:import:com.appspot.ast.client.editor.doodad.video'
     xmlns:t='urn:import:com.appspot.ast.client.editor.toolbar'
   >
-  <ui:image field="video" src="youtube.png"/>
+  <!--<ui:image field="video" src="youtube.png"/>-->
   <ui:style field="style" type="com.appspot.ast.client.layout.WaveEditor.MyStyle">
     .item {
       width: 100%;

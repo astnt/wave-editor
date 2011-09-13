@@ -78,7 +78,7 @@
       <!--<arg line="-style"/>-->
       <!--<arg value="PRETTY"/>-->
       <arg line="${gwt.args}"/>
-      <arg value="com.appspot.ast.WaveEditor"/>
+      <arg value="com.appspot.ast.WaveEditorLaunch"/>
     </java>
   </target>
 
